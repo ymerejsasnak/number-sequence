@@ -70,4 +70,7 @@ Sequence.prototype.apply = function(seqToApply, operation) {
 
 
 
-module.exports = Sequence;
+Sequence.prototype.show = function() {
+    return this.sequence;
+}
+

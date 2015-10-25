@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    background: linear-gradient(deepskyblue, lightblue);
+    background: linear-gradient(deepskyblue, skyblue);
 }
 
 #title-container {
@@ -30,7 +30,7 @@ html, body {
 
 #sequence-div p {
     font-size: 3em;
-    padding-top: 5%;
+    padding-top: 0%;
     text-align: center;
 }
 
@@ -39,6 +39,7 @@ html, body {
 }
 
 #answers-div button {
+    display: inline-block;
     width: 49%;
     margin: 1px;
 }
