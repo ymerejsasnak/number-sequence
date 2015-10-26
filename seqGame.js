@@ -48,18 +48,92 @@ $(function() {
 
     function Question(level) {
         //create new sequence and do generation/transformation based on level
-        let seqObj = new Sequence;
+        let seqObj = new Sequence, seqObj2 = new Sequence;
 
-        seqObj.generate(level, 'add');
+        switch (level) {
+            case 1:
+                this.sequence = seqObj.generate(Math.floor(Math.random() * 30 + 1), 'add');
+                break;
+
+            case 2:
+                seqObj.generate(Math.floor(Math.random() * 50 + 1), 'add');
+                seqObj2.generate(Math.floor(Math.random() * 50 + 1), 'add');
+                this.sequence = seqObj.alternate(seqObj2);
+                break;
+
+            case 3:
+                seqObj.generate(Math.floor(Math.random() * 20 + 5), 'multiply');
+                this.sequence = seqObj.transform(Math.floor(Math.random() * 100) + 20, 'add');
+                break;
+
+            case 4:
+                seqObj.generate(Math.floor(Math.random() * 100 + 25), 'multiply');
+                this.sequence = seqObj.transform(Math.floor(Math.random() * 600) + 200, 'add');
+                break;
+                
+
+            case 5: 
+                seqObj.generate(Math.floor(Math.random() * 20 + 1), 'add');
+                this.sequence = seqObj.decimalToOther(Math.floor(Math.random() * 5 + 3));
+                break;               
+                
+
+            case 6:
+                
+                this.sequence = seqObj.generate(Math.floor(Math.random() * 3 + 2), 'power');
+                this.sequence = seqObj.transform(Math.floor(Math.random() * 100) + 20, 'add');
+                break;
+
+            case 7:
+                seqObj.generate(Math.floor(Math.random() * 10 + 5), 'multiply');
+                seqObj2.generate(Math.floor(Math.random() * 10 + 5), 'multiply');
+                this.sequence = seqObj.apply(seqObj2, 'multiply');
+                break;
+                
+            case 8:
+                seqObj.generate(Math.floor(Math.random() * 50 + 1), 'add');
+                seqObj.decimalToOther(Math.floor(Math.random() * 2 + 3));
+                this.sequence = seqObj.transform(Math.floor(Math.random() * 8 + 11), 'multiply');
+                break;
+
+            case 9:
+                seqObj.generate(Math.floor(Math.random() * 50 + 1), 'multiply');
+                seqObj2.generate(Math.floor(Math.random() * 50 + 1), 'multiply');
+                seqObj.decimalToOther(Math.floor(Math.random() * 5 + 2));
+                seqObj2.decimalToOther(Math.floor(Math.random() * 5 + 2));
+                seqObj.transform(Math.floor(Math.random() * 600) + 200, 'add');
+                seqObj2.transform(Math.floor(Math.random() * 600) + 200, 'add');
+                this.sequence = seqObj.apply(seqObj2, 'add');
+                break;
+
+            case 10:
+                seqObj.generate(Math.floor(Math.random() * 5 + 1), 'power');
+                seqObj2.generate(Math.floor(Math.random() * 5 + 1), 'power');
+                seqObj2.decimalToOther(Math.floor(Math.random() * 5 + 2));
+                this.sequence = seqObj.apply(seqObj2, 'add');
+                break;      
+                
+        }
 
         
-        //set values for question object
-        this.sequence = seqObj.show();
+
+
+
+
+
+        
+        //use above to set values for question object
         this.given = this.sequence.slice(0,10);
-        this.options = this.sequence.slice(10,14);
         this.answer = this.sequence[10].toString();
 
+
+
+        this.options = this.sequence.slice(10,14); //temporary, need to change answer placement and incorrect options
+
     }
+
+
+
 
 
 

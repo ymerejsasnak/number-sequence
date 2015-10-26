@@ -17,7 +17,7 @@ Sequence.prototype.generate = function(begin, operation) {
                 this.sequence.push(begin * i);
                 break;
             case 'power':
-                this.sequence.push(Math.pow(begin, i));
+                this.sequence.push(Math.pow(i, begin));
                 break;            
         }
     }
@@ -48,7 +48,7 @@ Sequence.prototype.alternate = function(otherSeq) {
     let newSeq = [];
     for (let i = 0; i < SEQUENCE_LENGTH / 2; i++) {
         newSeq.push(this.sequence[i]);
-        newSeq.push(otherSeq[i]);
+        newSeq.push(otherSeq.sequence[i]);
     }
     return newSeq; // or should it change this.seq and return that???
 }
@@ -57,20 +57,20 @@ Sequence.prototype.alternate = function(otherSeq) {
 Sequence.prototype.apply = function(seqToApply, operation) {
     switch (operation) {
         case 'add':
-            this.sequence = this.sequence.map(function(value, index) { return value + seqToApply[index]; } );
+            this.sequence = this.sequence.map(function(value, index) { return value + seqToApply.sequence[index]; } );
             break;
         case 'multiply':
-            this.sequence = this.sequence.map(function(value, index) { return value * seqToApply[index]; } );
+            this.sequence = this.sequence.map(function(value, index) { return value * seqToApply.sequence[index]; } );
             break;
         case 'power':
-            this.sequence = this.sequence.map(function(value, index) { return Math.pow(value, seqToApply[index]); } );
+            this.sequence = this.sequence.map(function(value, index) { return Math.pow(value, seqToApply.sequence[index]); } );
     }
     return this.sequence;
 }
 
 
 
-Sequence.prototype.show = function() {
+Sequence.prototype.getNumbers = function() {
     return this.sequence;
 }
 
